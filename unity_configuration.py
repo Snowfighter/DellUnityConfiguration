@@ -17,6 +17,7 @@ Unity Specific
 import subprocess
 import os
 import re
+from uemcli_commands import *
 
 
 class Unity():
@@ -88,7 +89,7 @@ def unityGeneralConfiguration(unity):
             unity.sanNetmask = sanNetmask
             break
         else:
-            print('Enter valid IP!')
+            print('Enter valid Mask!')
             continue
 
     # Asking for new Admin password
@@ -196,6 +197,8 @@ def main():
             else:
                 print('Type y or n!')
                 continue
+
+
         
 
 if __name__ == "__main__":
