@@ -1,19 +1,3 @@
-'''
-Parameters needed
-General:
-* unity default password
-* new admin password
-* san netmask
-* san gateway
-* new_admin user
-* new_admin password
-* ntp server number
-* ntp server ips
-Unity Specific
-* ip
-* unity name
-* path to lic
-'''
 import subprocess
 import os
 import re
@@ -251,8 +235,6 @@ def main():
         if not uemcliBackbone(license, message, unity.unityIP, unity.pathToLic):
             return
 
-
-        
 
 if __name__ == "__main__":
     main()
