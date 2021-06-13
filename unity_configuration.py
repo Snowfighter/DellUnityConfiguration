@@ -35,18 +35,32 @@ class Unity():
         self.pathToLic = pathToLic
 
     def __str__(self):
-        return "\nUnity Name: {unityName}\n \
-                Unity IP Address: {unityIP}\n \
-                Path to License File: {pathToLic}\n \
-                SAN Gateway: {sanGateway}\n \
-                SAN Netmask: {sanNetmask}\n \
-                Admin Password: {adminPassword}\n \
-                New Administration User's Name: {newAdminUser}\n \
-                {newAdminUser} Password: {newAdminUserPassword}\n \
-                NTP Servers: {ntpIPs}".format(unityName = self.unityName, unityIP = self.unityIP, \
+        return "\n Unity Name: {unityName} \
+                \n Unity IP Address: {unityIP} \
+                \n Path to License File: {pathToLic} \
+                \n SAN Gateway: {sanGateway} \
+                \n SAN Netmask: {sanNetmask} \
+                \n Admin Password: {adminPassword} \
+                \n New Administration User's Name: {newAdminUser} \
+                \n {newAdminUser} Password: {newAdminUserPassword} \
+                \n NTP Servers: {ntpIPs}".format(unityName = self.unityName, unityIP = self.unityIP, \
                     pathToLic = self.pathToLic, sanGateway = self.sanGateway, sanNetmask = self.sanNetmask, \
                     adminPassword = self.adminPassword, newAdminUser = self.newAdminUser, newAdminUserPassword = self.newAdminUserPassword, \
                     ntpIPs = self.ntpIPs)
+
+
+
+def uemcliBackbone(func, message, *args):
+    while True:
+        message = raw_input(message)
+        if message == 'y':
+            func(*args)
+            return
+        elif message == 'n':
+            return
+        else:
+            print('Type y or n!')
+            continue
 
 
 def validateIPMask(mask):
@@ -56,7 +70,7 @@ def validateIPMask(mask):
 
 def validatePassword(password):
     if len(password) < 8:
-        print("Your password's length should me at least 8 symbols!")
+        print("Your password's length should be at least 8 symbols!")
         return False
     elif re.search('[0-9]', password) is None:
         print("Your password should contain at least one number!")
@@ -84,7 +98,7 @@ def unityGeneralConfiguration(unity):
 
     # Asking for a san Netmask
     while True:
-        sanNetmask = raw_input("Enter valid SAN Netmask [255.255.255.0]: ")
+        sanNetmask = raw_input("Enter valid the SAN Netmask [255.255.255.0]: ")
         if validateIPMask(sanNetmask):
             unity.sanNetmask = sanNetmask
             break
@@ -143,7 +157,7 @@ def unitySpecificConfiguration(unity):
             unity.unityIP = unityIP
             break
         else:
-            print('Enter valid IP!')
+            print('Enter the valid IP!')
             continue
     
     # Asking for Unity Name
@@ -168,7 +182,7 @@ def main():
 
     # Asking the user for the number of Unities
     while True:
-        numOfUnity = raw_input("Number of Unities in the deployment [1-9, q]: ")
+        numOfUnity = raw_input("Enter the number of Unities in the deployment [1-9, q]: ")
         if numOfUnity == 'q':
             print('Script is quiting ...')
             return
@@ -197,6 +211,38 @@ def main():
             else:
                 print('Type y or n!')
                 continue
+        
+        # Accepting Agreement
+        message = 'Do you wish to execute Agreement Assigning [y/n]: '
+        uemcliBackbone(acceptingAgreement, message, unity.unityIP, unity.unity_default_password)
+        
+        # Changing Admin Password
+        message = 'Do you wish to change Admin password [y/n]: '
+        uemcliBackbone(changeAdminPassword, message, unity.unityIP, unity.unity_default_password, unity.adminPassword)
+
+        # Assigning Static IP
+        message = 'Do you wish to assign Static IP [y/n]: '
+        uemcliBackbone(assignStaticIP, message, unity.unityIP, unity.adminPassword, unity.sanNetmask, unity.sanGateway)
+
+        # Assigning Unity Name
+        message = 'Do you wish to change Unity Name [y/n]: '
+        uemcliBackbone(assignName, message, unity.unityIP, unity.adminPassword, unity.unityName)
+
+        # Creating extra administration User
+        message = 'Do you wish to create extra administration User [y/n]: '
+        uemcliBackbone(extraAdminUserCreation, message, unity.unityIP, unity.adminPassword, unity.newAdminUser, unity.newAdminUserPassword)
+        
+        # Creating Security File
+        message = 'Do you wish to create Security File [y/n]: '
+        uemcliBackbone(securityFileCreation, message, unity.unityIP, unity.adminPassword)
+
+        # Configuring NTP
+        message = 'Do you wich to configure NTP servers [y/n]: '
+        uemcliBackbone(configureNTP, message, unity.unityIP, unity.ntpIPs)
+
+        # Installing License
+        message = 'Do you wish to install license [y/n]: '
+        uemcliBackbone(license, message, unity.unityIP, unity.pathToLic)
 
 
         
