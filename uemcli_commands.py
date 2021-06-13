@@ -65,7 +65,6 @@ def configureNTP(unityIP, ntpIPs):
             print(output)
             return False
 
-
 # Install License
 def license(unityIP, pathToLic):
     bashCommand = 'uemcli -d ' + unityIP + ' -upload -f ' + pathToLic + ' license'
