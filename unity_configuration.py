@@ -54,8 +54,7 @@ def uemcliBackbone(func, message, *args):
     while True:
         message = raw_input(message)
         if message == 'y':
-            func(*args)
-            return
+            return func(*args)
         elif message == 'n':
             return
         else:
@@ -214,35 +213,43 @@ def main():
         
         # Accepting Agreement
         message = 'Do you wish to execute Agreement Assigning [y/n]: '
-        uemcliBackbone(acceptingAgreement, message, unity.unityIP, unity.unity_default_password)
+        if not uemcliBackbone(acceptingAgreement, message, unity.unityIP, unity.unity_default_password):
+            return
         
         # Changing Admin Password
         message = 'Do you wish to change Admin password [y/n]: '
-        uemcliBackbone(changeAdminPassword, message, unity.unityIP, unity.unity_default_password, unity.adminPassword)
+        if not uemcliBackbone(changeAdminPassword, message, unity.unityIP, unity.unity_default_password, unity.adminPassword):
+            return
 
         # Assigning Static IP
         message = 'Do you wish to assign Static IP [y/n]: '
-        uemcliBackbone(assignStaticIP, message, unity.unityIP, unity.adminPassword, unity.sanNetmask, unity.sanGateway)
+        if not uemcliBackbone(assignStaticIP, message, unity.unityIP, unity.adminPassword, unity.sanNetmask, unity.sanGateway):
+            return
 
         # Assigning Unity Name
         message = 'Do you wish to change Unity Name [y/n]: '
-        uemcliBackbone(assignName, message, unity.unityIP, unity.adminPassword, unity.unityName)
+        if not uemcliBackbone(assignName, message, unity.unityIP, unity.adminPassword, unity.unityName):
+            return
 
         # Creating extra administration User
         message = 'Do you wish to create extra administration User [y/n]: '
-        uemcliBackbone(extraAdminUserCreation, message, unity.unityIP, unity.adminPassword, unity.newAdminUser, unity.newAdminUserPassword)
+        if not uemcliBackbone(extraAdminUserCreation, message, unity.unityIP, unity.adminPassword, unity.newAdminUser, unity.newAdminUserPassword):
+            return
         
         # Creating Security File
         message = 'Do you wish to create Security File [y/n]: '
-        uemcliBackbone(securityFileCreation, message, unity.unityIP, unity.adminPassword)
+        if not uemcliBackbone(securityFileCreation, message, unity.unityIP, unity.adminPassword):
+            return
 
         # Configuring NTP
         message = 'Do you wich to configure NTP servers [y/n]: '
-        uemcliBackbone(configureNTP, message, unity.unityIP, unity.ntpIPs)
+        if not uemcliBackbone(configureNTP, message, unity.unityIP, unity.ntpIPs):
+            return
 
         # Installing License
         message = 'Do you wish to install license [y/n]: '
-        uemcliBackbone(license, message, unity.unityIP, unity.pathToLic)
+        if not uemcliBackbone(license, message, unity.unityIP, unity.pathToLic):
+            return
 
 
         
