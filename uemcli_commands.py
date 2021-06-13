@@ -3,9 +3,13 @@ def execution(bashCommand, message):
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
     if 'error' not in output:
+        print('##########')
         print(message)
+        print('##########')
+        print(output)
         return True
     else:
+        print('##########')
         print(output)
         return False
 
