@@ -1,4 +1,3 @@
-import subprocess
 import os
 import re
 from uemcli_commands import *
@@ -40,7 +39,7 @@ def uemcliBackbone(func, message, *args):
         if message == 'y':
             return func(*args)
         elif message == 'n':
-            return
+            return True
         else:
             print('Type y or n!')
             continue
@@ -176,6 +175,8 @@ def main():
             except ValueError:
                 print('Enter the right number!')
                 continue
+
+    print('Unity NUM:')
 
     # Executing configuration on Unities
     for _ in range(numOfUnity):

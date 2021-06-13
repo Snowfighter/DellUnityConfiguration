@@ -1,8 +1,9 @@
+import subprocess
 # Execution Backbone
 def execution(bashCommand, message):
     process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
     output, error = process.communicate()
-    if 'error' not in output:
+    if 'Error' not in output:
         print('##########')
         print(message)
         print('##########')
@@ -68,6 +69,7 @@ def configureNTP(unityIP, ntpIPs):
         else:
             print(output)
             return False
+    return True
 
 # Install License
 def license(unityIP, pathToLic):
