@@ -2,6 +2,10 @@
 
 # Dell EMC Unity Configuration
 
+[![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)]
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 The idea of creating this script came to me while working on a project at my job.
 
 ## Overview
@@ -57,5 +61,7 @@ Every inputed IP and Mask is validated via `validateIPMask` function and passwor
 5. For every `uemcli` command confirm its execution
 6. If the `uemcli` command failed the script quits
 7. Repeat steps [3-6] for every Unity
+
+# Additional Info
 
 
