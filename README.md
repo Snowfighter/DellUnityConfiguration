@@ -2,7 +2,7 @@
 
 # Dell EMC Unity Configuration
 
-[![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)]
+![Python 2.7](https://img.shields.io/badge/python-2.7-blue.svg)
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
