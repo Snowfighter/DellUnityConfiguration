@@ -13,7 +13,7 @@ If the deployment has several Unities (and it usually has), it may become really
 ## Solution
 The solution for this problem was implemented in [unity_configuration](./unity_configuration.py). The main parts of this script are `Unity` class, `unityGeneralConfiguration` function, `unitySpecificConfiguration` function and `main` function.
 
-### Unity Class
+### `Unity` Class
 This class is used for creating objects that store essential information about the deployment itself and certain specifics about a Unity. Here is the list of attributes:
 - `sanNetmask` - SAN Netmask (*string*)
 - `sanGateway` - SAN Gateway (*string*)
@@ -24,3 +24,5 @@ This class is used for creating objects that store essential information about t
 - `unityIP` - Specific Unity IP Address (*string*)
 - `unityName` - Specific Unity Name (*string*)
 - `pathToLic` - Path to the License File (*string*)
+
+### `unityGeneralConfiguration` Function
