@@ -63,5 +63,6 @@ Every inputed IP and Mask is validated via `validateIPMask` function and passwor
 7. Repeat steps [3-6] for every Unity
 
 # Additional Info
+This script was tested on a real system and showed promising results
 
 
